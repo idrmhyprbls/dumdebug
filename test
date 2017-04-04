@@ -1,0 +1,72 @@
+#!/bin/env python
+
+import time, simpleDebugger
+
+class Class(object):
+
+   def __init__(self):
+      self.x = 'Hello'
+      self.c = self.x.count('o')
+      self.l = len(self.x)
+      self.y = [self.c,self.l]
+      #self.debugger0 = simpleDebugger.NewWindow()
+
+   def __repr__(self):
+      return "x:%s\nc:%s\nl:%s\ny:%s" % (self.x, self.c, self.l, self.y)
+
+   def reset(self):
+      self.x = "Hyo"
+      self.c = self.x.count('o')
+      self.l = len(self.x)
+      self.y = [self.c,self.l]
+      #self.debugger0.update(locals())
+
+def main():
+
+   print "STARTING TEST..."
+   doubles = 0
+   passnum = 0
+   C = Class()
+   clock = 0.0
+   debugger = simpleDebugger.NewWindow()
+   #debugger2 = simpleDebugger.NewWindow()
+
+   def z(C, debugger2):
+      x = 1
+      #debugger2.update({"C":C,"x":x})
+      
+   try:
+      while passnum < 100:
+         #z(C, debugger2)
+         passnum += 1
+         doubles += 2
+         if passnum % 2:
+            even = False
+         else:
+            even = True
+         if even:
+            C.x += C.x[-1]
+            C.l += 1
+         if passnum == 2:
+            #C.reset()
+            pass
+         if passnum == 35:
+            #C.reset()
+            A = [1]
+         if passnum == 45:
+            A.append(2)
+            a = {'a':1}
+            a['g'] = 50
+         if passnum > 75:
+            A.append(3)
+            m = "asdf"
+         clock += .05
+         time.sleep(.05)
+         #debugger.update(simpleDebugger.makeVarDict(locals(), "C", "even", "passnum", "asdf", "clock"))
+         debugger.update(vars())
+   except:
+      raise
+   print "ENDED TEST..."
+
+if __name__ == "__main__":
+   main()
